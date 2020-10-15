@@ -2,11 +2,9 @@ package com.example.projet.entity;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "Salles")
@@ -16,10 +14,18 @@ public class Salle implements Serializable {
     private long Id_Salle;
     private String Numero_Salle;
     private int Nombre_Postes;
-    /*
-        @OneToMany(cascade = CascadeType.ALL)
-        private List<Poste> Postes;
-    */
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Poste> postes;
+
+    public List<Poste> getPostes() {
+        return postes;
+    }
+
+    public void setPostes(List<Poste> postes) {
+        this.postes = postes;
+    }
+
     public long getId_Salle() {
         return Id_Salle;
     }
@@ -50,6 +56,7 @@ public class Salle implements Serializable {
                 "Id_Salle=" + Id_Salle +
                 ", Numero_Salle='" + Numero_Salle + '\'' +
                 ", Nombre_Postes=" + Nombre_Postes +
+                ", postes=" + postes +
                 '}';
     }
 
