@@ -1,4 +1,4 @@
-package entity;
+package com.example.projet.entity;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
@@ -6,9 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
+
 @Entity
 @Table(name = "Salles")
-public class Salle {
+public class Salle implements Serializable {
     @Id
     @GeneratedValue
     private long Id_Salle;
@@ -49,6 +51,11 @@ public class Salle {
                 ", Numero_Salle='" + Numero_Salle + '\'' +
                 ", Nombre_Postes=" + Nombre_Postes +
                 '}';
+    }
+
+    public Salle(String numero_Salle, int nombre_Postes) {
+        Numero_Salle = numero_Salle;
+        Nombre_Postes = nombre_Postes;
     }
 
     public Salle(long id_salle, String numero_salle, int nombre_postes) {
