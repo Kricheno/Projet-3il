@@ -20,6 +20,11 @@ public class Poste implements Serializable {
     public Poste() {
     }
 
+    public Poste(long id_Poste, String adresse_Mac, String adresse_IP) {
+        Id_Poste = id_Poste;
+        Adresse_Mac = adresse_Mac;
+        Adresse_IP = adresse_IP;
+    }
 
     @Override
     public String toString() {
