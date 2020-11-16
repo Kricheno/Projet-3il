@@ -1,19 +1,28 @@
 package com.example.projet.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "materiels")
 public class Materiel implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id_Materiel;
     private String reference;
     private String nom;
     private Boolean etat;
     @Enumerated
     private TypeMateriel type;
+    @ManyToOne(cascade=CascadeType.ALL)
+    private Poste poste;
 
+    public Materiel() {
+    }
 
     @Override
     public String toString() {
@@ -23,10 +32,12 @@ public class Materiel implements Serializable {
                 ", nom='" + nom + '\'' +
                 ", etat=" + etat +
                 ", type=" + type +
+                ", poste=" + poste +
                 '}';
     }
 
-    public Materiel() {
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public long getId_Materiel() {
@@ -70,4 +81,7 @@ public class Materiel implements Serializable {
     }
 
 
+    public void setPoste(Poste poste) {
+        this.poste = poste;
+    }
 }

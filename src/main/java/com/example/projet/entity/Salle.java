@@ -1,29 +1,41 @@
 package com.example.projet.entity;
 
+import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "Salles")
+@Table(name = "salle")
+@AllArgsConstructor
 public class Salle implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id_Salle;
     private String Numero_Salle;
     private int Nombre_Postes;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Poste> postes;
+    public Salle(long id_Salle) {
+        Id_Salle = id_Salle;
+    }
+//@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy="salle")
+    //private List<Poste> postes;
 
-    public List<Poste> getPostes() {
-        return postes;
+    @Override
+    public String toString() {
+        return "Salle{" +
+                "Id_Salle=" + Id_Salle +
+                ", Numero_Salle='" + Numero_Salle + '\'' +
+                ", Nombre_Postes=" + Nombre_Postes +
+                '}';
     }
 
-    public void setPostes(List<Poste> postes) {
-        this.postes = postes;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public long getId_Salle() {
@@ -50,27 +62,13 @@ public class Salle implements Serializable {
         Nombre_Postes = nombre_Postes;
     }
 
-    @Override
-    public String toString() {
-        return "Salle{" +
-                "Id_Salle=" + Id_Salle +
-                ", Numero_Salle='" + Numero_Salle + '\'' +
-                ", Nombre_Postes=" + Nombre_Postes +
-                ", postes=" + postes +
-                '}';
-    }
+
 
     public Salle(String numero_Salle, int nombre_Postes) {
         Numero_Salle = numero_Salle;
         Nombre_Postes = nombre_Postes;
     }
 
-    public Salle(long id_salle, String numero_salle, int nombre_postes) {
-        Id_Salle = id_salle;
-        Numero_Salle = numero_salle;
-        Nombre_Postes = nombre_postes;
-        //Postes = postes;
-    }
 
     public Salle() {
 

@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 /**
  *	@desc	Static WOL magic packet class
  */
-public class MagicPacket
+public class WakeOnLanService
 {
     private static final String TAG = "MagicPacket";
 
@@ -117,15 +117,11 @@ public class MagicPacket
         }
     }
 
-    public static void main(String[] args) {
-
-        String ipStr = "172.16.105.1";
-        String macStr = "90-1B-0E-B7-82-76";
-
+    public void wakeOnLan(String ipStr,String macStr){
         try	{
-            macStr = MagicPacket.cleanMac(macStr);
+            macStr = WakeOnLanService.cleanMac(macStr);
             System.out.println("Sending to: "+macStr);
-            MagicPacket.send(macStr, ipStr);
+            WakeOnLanService.send(macStr, ipStr);
         }
         catch(IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -133,5 +129,6 @@ public class MagicPacket
             System.out.println("Failed to send Wake-on-LAN packet:" + e.getMessage());
         }
     }
+
 
 }
