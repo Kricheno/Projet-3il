@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CsvHelper {
-    public static String TYPE = "text/csv";
+    public static String TYPE = "csv";
     static String[] HEADERs = { "Id_Poste", "Adresse_Mac", "Adresse_IP" };
 
     public static boolean hasCSVFormat(MultipartFile file) {

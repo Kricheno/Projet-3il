@@ -1,5 +1,5 @@
 package com.example.projet.web.controller;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import com.example.projet.entity.CsvHelper;
 import com.example.projet.entity.Poste;
 import com.example.projet.entity.ResponseMessage;
@@ -17,9 +17,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
-@CrossOrigin("http://localhost:8080")
+
 @RestController
 @RequestMapping("/api/csv")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CsvController {
     @Autowired
     CsvService fileService;

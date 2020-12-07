@@ -1,8 +1,8 @@
 package com.example.projet.service;
 
 import com.example.projet.dao.PosteDao;
-import com.example.projet.dao.SalleDao;
 import com.example.projet.entity.Poste;
+import com.example.projet.entity.Salle;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,23 +18,39 @@ public class PosteService implements  IPosteService{
     private static final Logger l=  LogManager.getLogger(SalleService.class);
 
     @Override
-    public int ajouterPoste(Poste p) {
+    public int addPoste(Poste p) {
         posteDao.save(p);
         return 1;
     }
 
     @Override
-    public void supprimerPoste(Long id) {
+    public void deletePoste(Long id) {
         posteDao.deleteById(id);
     }
 
     @Override
-    public List<Poste> afficherPostes() {
+    public List<Poste> retrievePostes() {
         List<Poste> Postes = (List<Poste>) posteDao.findAll();
         for (Poste p : Postes){
             l.info("Poste:   "+p);
 
         }
         return Postes;
+    }
+
+    @Override
+    public List<Poste> retrievePostesBySalle(Long id) {
+        List<Poste> Postes = (List<Poste>) posteDao.retrievePostesBySalle(id);
+        for (Poste p : Postes){
+            l.info("Poste:   "+p);
+
+        }
+        return Postes;
+    }
+
+    @Override
+    public Poste updatePoste(Poste p) {
+        posteDao.save(p);
+        return p;
     }
 }

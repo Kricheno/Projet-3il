@@ -6,7 +6,8 @@ import java.util.List;
 
 public interface IMaterielService {
 
-    public int ajouterMateriel(Materiel m);
-    public void supprimerMateriel(Long id);
-    public List<Materiel> afficherMateriels();
+    int addMateriel(Materiel m);
+    void deleteMateriel(Long id);
+    List<Materiel> retrieveMateriels();
+    Materiel updateMateriel(Materiel m);
 }

@@ -21,23 +21,28 @@ public class SalleService implements ISalleService {
     private static final Logger l=  LogManager.getLogger(SalleService.class);
 
     @Override
-    public int ajouterSalle(Salle s) {
+    public int addSalle(Salle s) {
         sd.save(s);
         return 1;
     }
 
     @Override
-    public void supprimerSalle(Long id) {
+    public void deleteSalle(Long id) {
         sd.deleteById(id);
     }
 
     @Override
-    public List<Salle> afficherSalles() {
+    public List<Salle> retrieveSalles() {
         List<Salle> salles = (List<Salle>) sd.findAll();
         for (Salle s : salles){
             l.info("salle +++"+s);
         }
         return salles;
+    }
+    @Override
+    public Salle updateSalle(Salle s) {
+        sd.save(s);
+        return s;
     }
 
 }

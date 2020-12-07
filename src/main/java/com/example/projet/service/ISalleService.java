@@ -5,7 +5,8 @@ import com.example.projet.entity.Salle;
 import java.util.List;
 
 public interface ISalleService {
-    public int ajouterSalle(Salle s);
-    public void supprimerSalle(Long id);
-    public List<Salle> afficherSalles();
+    int addSalle(Salle s);
+    void deleteSalle(Long id);
+    List<Salle> retrieveSalles();
+    Salle updateSalle(Salle s);
 }

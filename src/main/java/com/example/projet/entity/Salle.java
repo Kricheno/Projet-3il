@@ -1,6 +1,7 @@
 package com.example.projet.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 
@@ -11,6 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "salle")
 @AllArgsConstructor
+@Data
 public class Salle implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

@@ -33,20 +33,20 @@ class ProjetApplicationTests {
     void contextLoads() {
       //  Salle s=new Salle("s105",15);
         Salle s2= new Salle("s110",12);
-        //ss.ajouterSalle(s2);
+        //ss.addSalle(s2);
         //ss.ajouterSalle(s);
         Poste p=new Poste(1,"F4:D5:R3:T8","172.15.2.1",s2);
         Poste p2=new Poste(2,"D5:GH:L1:M6","192.15.2.2",s2);
         //List<Poste> ps= new ArrayList<>();
-        //ps.add(p);
-        //ps.add(p2);
-        Salle sss=new Salle(19);
+       // posteService.addPoste(p);
+        //posteService.addPoste(p2);
+        Salle sss=new Salle(22);
         List<Poste> listBySalle = pdao.retrievePostesBySalle(sss.getId_Salle());
         for (Poste poste : listBySalle){
             l.info("Poste:   "+poste);
         }
-        listBySalle.parallelStream().forEach((Poste po)->
-                           l.info("poste_IP +++"+po.getAdresse_IP()));
+       // listBySalle.parallelStream().forEach((Poste po)->
+         //                  l.info("poste_IP +++"+po.));
         //Salle s3=new Salle("s108",16);
        // s3.setPostes(ps);
 
