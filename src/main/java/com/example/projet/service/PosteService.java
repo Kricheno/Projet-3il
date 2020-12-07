@@ -2,7 +2,6 @@ package com.example.projet.service;
 
 import com.example.projet.dao.PosteDao;
 import com.example.projet.entity.Poste;
-import com.example.projet.entity.Salle;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +37,21 @@ public class PosteService implements  IPosteService{
         return Postes;
     }
 
+
+
     @Override
     public List<Poste> retrievePostesBySalle(Long id) {
         List<Poste> Postes = (List<Poste>) posteDao.retrievePostesBySalle(id);
         for (Poste p : Postes){
+            l.info("Poste:   "+p);
+
+        }
+        return Postes;
+    }
+    @Override
+    public List<Object> retrievePostesBySalleObject(Long id) {
+        List<Object> Postes = (List<Object>) posteDao.retrievePostesBySalleObject(id);
+        for (Object p : Postes){
             l.info("Poste:   "+p);
 
         }

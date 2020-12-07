@@ -41,10 +41,10 @@ class ProjetApplicationTests {
        // posteService.addPoste(p);
         //posteService.addPoste(p2);
         Salle sss=new Salle(22);
-        List<Poste> listBySalle = pdao.retrievePostesBySalle(sss.getId_Salle());
+     /*   List<Poste> listBySalle = pdao.retrievePostesBySalle(sss.getId_Salle());
         for (Poste poste : listBySalle){
             l.info("Poste:   "+poste);
-        }
+        }  */
        // listBySalle.parallelStream().forEach((Poste po)->
          //                  l.info("poste_IP +++"+po.));
         //Salle s3=new Salle("s108",16);
