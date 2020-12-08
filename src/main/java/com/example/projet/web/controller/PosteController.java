@@ -25,8 +25,8 @@ public class PosteController {
 
     @RequestMapping(value="/retrieve-postes-by-salle/{Id_salle}", method= RequestMethod.GET)
     @ResponseBody
-    public List<Object> retrievePostesBySalleObject(@PathVariable("Id_salle") Long id) {
-        return ps.retrievePostesBySalleObject(id);
+    public List<Poste> retrievePostesBySalle(@PathVariable("Id_salle") Long id) {
+        return ps.retrievePostesBySalle(id);
     }
 
     @PostMapping("/addPoste")

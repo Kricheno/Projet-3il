@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @Entity
@@ -20,12 +21,19 @@ public class Poste implements Serializable {
     private long Id_Poste;
     private String Adresse_Mac;
     private String Adresse_IP;
+
     @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @JoinColumn(name = "id_salle", insertable = false,updatable = false)
     private Salle salle;
+
+    @OneToMany(mappedBy = "poste")
+    private List<Materiel> materiels;
 
     public Poste(long id_Poste, String adresse_Mac, String adresse_IP) {
         Id_Poste = id_Poste;
         Adresse_Mac = adresse_Mac;
         Adresse_IP = adresse_IP;
     }
+
+
 }

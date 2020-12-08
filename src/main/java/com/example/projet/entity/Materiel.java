@@ -18,23 +18,15 @@ public class Materiel implements Serializable {
     private Boolean etat;
     @Enumerated
     private TypeMateriel type;
-    @ManyToOne(cascade=CascadeType.ALL)
+
+    @ManyToOne
+    @JoinColumn(name="id_poste", insertable = false,updatable = false)
     private Poste poste;
 
     public Materiel() {
     }
 
-    @Override
-    public String toString() {
-        return "Materiel{" +
-                "Id_Materiel=" + Id_Materiel +
-                ", reference='" + reference + '\'' +
-                ", nom='" + nom + '\'' +
-                ", etat=" + etat +
-                ", type=" + type +
-                ", poste=" + poste +
-                '}';
-    }
+
 
     public static long getSerialVersionUID() {
         return serialVersionUID;

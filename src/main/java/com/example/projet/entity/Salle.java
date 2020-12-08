@@ -2,8 +2,6 @@ package com.example.projet.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-
 import javax.persistence.*;
 import java.io.Serializable;
 @Data
