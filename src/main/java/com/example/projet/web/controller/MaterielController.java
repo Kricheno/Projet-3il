@@ -19,12 +19,18 @@ public class MaterielController {
         return ms.retrieveMateriels();
     }
 
+    @RequestMapping(value="/retrieve-materiels-by-poste/{Id_Poste}", method= RequestMethod.GET)
+    @ResponseBody
+    public List<Materiel> retrieveMaterielsByPoste(@PathVariable("Id_Poste") Long id){
+        return ms.retrieveMaterielsByPoste(id);
+    }
     @PostMapping("/addMateriel")
     @ResponseBody
     public int addMateriel(@RequestBody Materiel m) {
 
         return ms.addMateriel(m);
     }
+
 
     @DeleteMapping("/deleteMateriel/{Id_Materiel}")
     @ResponseBody

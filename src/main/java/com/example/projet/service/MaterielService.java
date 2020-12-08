@@ -26,6 +26,16 @@ public class MaterielService implements IMaterielService{
     }
 
     @Override
+    public List<Materiel> retrieveMaterielsByPoste(Long id) {
+        List<Materiel> materiels = (List<Materiel>) materielDao.retrieveMaterielsByPoste(id);
+        for (Materiel m : materiels){
+            l.info("Materiel:   "+m);
+
+        }
+        return materiels;
+    }
+
+    @Override
     public void deleteMateriel(Long id) { materielDao.deleteById(id);
     }
 
