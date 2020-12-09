@@ -1,7 +1,10 @@
 package com.example.projet.service;
 
+import com.example.projet.entity.Poste;
+
 import java.io.IOException;
 import java.net.*;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -129,6 +132,8 @@ public class WakeOnLanService
             System.out.println("Failed to send Wake-on-LAN packet:" + e.getMessage());
         }
     }
+
+
 
 
 }
