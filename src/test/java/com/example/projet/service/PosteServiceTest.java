@@ -2,6 +2,7 @@ package com.example.projet.service;
 
 
 import com.example.projet.dao.PosteDao;
+import com.example.projet.dao.SalleDao;
 import com.example.projet.entity.Poste;
 import com.example.projet.entity.Salle;
 import org.apache.logging.log4j.LogManager;
@@ -10,10 +11,13 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Optional;
 
-class PosteServiceTest {
+public class PosteServiceTest {
     @Autowired
     PosteDao pdao;
+    @Autowired
+    PosteService posteService= new PosteService();
     private static final Logger l=  LogManager.getLogger(PosteServiceTest.class);
     @Test
     public void retrievePostesTest(){
@@ -26,5 +30,12 @@ class PosteServiceTest {
             l.info("Poste:   "+poste);
         }
     }
+//    @Test
+//    public void addPosteTest(){
+//        Salle salle1=new Salle(104);
+//      //  Optional<Salle> salle= sdao.findById((long) 104);
+//        Poste poste= new Poste(salle1,"zz-zz-zz-zz","1720.635.77");
+//        posteService.addPoste(poste);
+//    }
 
 }

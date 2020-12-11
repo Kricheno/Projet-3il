@@ -1,16 +1,22 @@
 package com.example.projet.entity;
 
+import com.example.projet.dao.SalleDao;
 import org.apache.commons.csv.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class CsvHelper {
-    public static String TYPE = "csv";
-    static String[] HEADERs = { "Id_Poste", "Adresse_Mac", "Adresse_IP" };
+    public static String TYPE = "text/csv";
+    static String[] HEADERs = {"adresse_ip","adresse_mac","id_salle"};
+
+    @Autowired
+    public static SalleDao salleDao;
 
     public static boolean hasCSVFormat(MultipartFile file) {
         if (TYPE.equals(file.getContentType())
@@ -26,32 +32,36 @@ public class CsvHelper {
              CSVParser csvParser = new CSVParser(fileReader,
                      CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());) {
 
-            List<Poste> developerTutorialList = new ArrayList<>();
+            List<Poste> posteList = new ArrayList<>();
 
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
 
             for (CSVRecord csvRecord : csvRecords) {
+                //Optional<Salle> salle = salleDao.findById();
                 Poste poste = new Poste(
-                        Long.parseLong(csvRecord.get("Id_Poste")),
-                        csvRecord.get("Adresse_Mac"),
-                        csvRecord.get("Adresse_IP"));
+                        Long.parseLong(csvRecord.get("id_salle")),
+                        csvRecord.get("adresse_mac"),
+                        csvRecord.get("adresse_ip")
 
-                developerTutorialList.add(poste);
+                );
+
+                posteList.add(poste);
             }
 
-            return developerTutorialList;
+            return posteList;
         } catch (IOException e) {
             throw new RuntimeException("fail to parse CSV file: " + e.getMessage());
         }
     }
-       public static ByteArrayInputStream tutorialsToCSV(List<Poste> postes) {
+
+    public static ByteArrayInputStream tutorialsToCSV(List<Poste> posteList) {
         final CSVFormat format = CSVFormat.DEFAULT.withQuoteMode(QuoteMode.MINIMAL);
 
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
              CSVPrinter csvPrinter = new CSVPrinter(new PrintWriter(out), format);) {
-            for (Poste poste : postes) {
+            for (Poste poste : posteList) {
                 List<String> data = Arrays.asList(
-                        String.valueOf(poste.getId_Poste()),
+                        String.valueOf(poste.getSalle().getId_Salle()),
                         poste.getAdresse_Mac(),
                         poste.getAdresse_IP()
                 );
@@ -66,4 +76,3 @@ public class CsvHelper {
         }
     }
 }
-

@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface SalleDao extends JpaRepository<Salle,Long> {
 
 
+
 }

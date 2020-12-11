@@ -2,10 +2,12 @@ package com.example.projet.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+@RequiredArgsConstructor
 @Entity
 @Table(name = "materiels")
 public class Materiel implements Serializable {
@@ -22,11 +24,6 @@ public class Materiel implements Serializable {
     @ManyToOne
     @JoinColumn(name="id_poste", insertable = false,updatable = false)
     private Poste poste;
-
-    public Materiel() {
-    }
-
-
 
     public static long getSerialVersionUID() {
         return serialVersionUID;

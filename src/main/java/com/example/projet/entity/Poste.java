@@ -21,6 +21,7 @@ public class Poste implements Serializable {
     private long Id_Poste;
     private String Adresse_Mac;
     private String Adresse_IP;
+    private boolean etat;
 
     @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinColumn(name = "id_salle", insertable = false,updatable = false)
@@ -35,5 +36,9 @@ public class Poste implements Serializable {
         Adresse_IP = adresse_IP;
     }
 
-
+    public Poste(Salle salle,String adresse_Mac, String adresse_IP) {
+        Adresse_Mac = adresse_Mac;
+        Adresse_IP = adresse_IP;
+        this.salle = salle;
+    }
 }

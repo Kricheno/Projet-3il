@@ -1,7 +1,17 @@
 package com.example.projet.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
 
-class CsvServiceTest {
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class CsvServiceTest {
+
+    @Test
+    public void testCSV(){
+
+
+
+    }
 
 }
