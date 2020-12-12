@@ -30,4 +30,5 @@ public class Salle implements Serializable {
     public Salle() {
 
     }
+
 }

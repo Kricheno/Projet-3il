@@ -39,9 +39,9 @@ public class CsvHelper {
             for (CSVRecord csvRecord : csvRecords) {
                 //Optional<Salle> salle = salleDao.findById();
                 Poste poste = new Poste(
-                        Long.parseLong(csvRecord.get("id_salle")),
+
                         csvRecord.get("adresse_mac"),
-                        csvRecord.get("adresse_ip")
+                        csvRecord.get("adresse_ip"),Long.parseLong(csvRecord.get("id_salle"))
 
                 );
 

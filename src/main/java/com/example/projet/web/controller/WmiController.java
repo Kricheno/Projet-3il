@@ -19,14 +19,17 @@ public class WmiController {
     String password="omartest";
     @Autowired
     WmiService wmiService;
-    @PostMapping("/test-one-poste/{Id_Poste}")
+
+    @PostMapping("/testPoste")
     @ResponseBody
-    public void testOnePoste(@PathVariable("Id_Poste") Long id){
+    public void testOnePoste(@RequestParam("Id_Poste") Long id){
         wmiService.testOnePoste(id,user,password);
     }
-    @PostMapping("/test-one-poste/{Id_salle}")
+
+
+    @PostMapping("/testSalle")
     @ResponseBody
-    public void testOneSalle(@PathVariable("Id_Salle") Long id){
+    public void testOneSalle(@RequestParam("Id_Salle") Long id){
         wmiService.testOneSalle(id,user,password);
     }
 }

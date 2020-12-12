@@ -54,8 +54,11 @@ public class WmiService {
     public void testOneSalle(Long id,String user, String password) {
         l.info("testing one salle");
         List<Poste> listBySalle = pdao.retrievePostesBySalle(id);
-        listBySalle.parallelStream().forEach((Poste p)-> testOnePoste(p.getId_Poste(),user,password));
-
-        }
+        listBySalle.parallelStream().forEach((Poste p)->
+                //testOnePoste(p.getId_Poste(),user,password)
+                l.info("wmi pour l'id: {}",p.getId_Poste())
+        );
     }
+
+}
 
