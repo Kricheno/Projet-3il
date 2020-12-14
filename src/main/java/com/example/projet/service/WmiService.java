@@ -4,7 +4,9 @@ package com.example.projet.service;
 import com.example.projet.api.wmi.OSDetector;
 import com.example.projet.api.wmi.PowerShell;
 import com.example.projet.api.wmi.PowerShellResponse;
+import com.example.projet.dao.MaterielDao;
 import com.example.projet.dao.PosteDao;
+import com.example.projet.entity.Materiel;
 import com.example.projet.entity.Poste;
 import com.example.projet.entity.Salle;
 import com.example.projet.web.controller.WmiController;
@@ -21,9 +23,14 @@ public class WmiService {
     private static final org.apache.logging.log4j.Logger l=  LogManager.getLogger(WmiController.class);
     @Autowired
     PosteDao pdao;
+    @Autowired
+    MaterielDao materielDao;
     public void testOnePoste(Long id,String user, String password) {
         l.info("testing one poste");
         Optional<Poste> poste= pdao.findById(id);
+        Materiel souris=new Materiel("souris",false,id);
+        Materiel clavier=new Materiel("clavier",false,id);
+        Materiel ecran=new Materiel("ecran",false,id);
         if (OSDetector.isWindows()) {
             PowerShell powerShell = PowerShell.openSession();
             // Pour detecter le clavier
@@ -41,14 +48,20 @@ public class WmiService {
             Integer nbreEcran = Integer.parseInt(resultatEcran);
 
             //Message
-            if (nbreClavier >= 1) { l.info("il y a " + nbreClavier + " clavier"); }
+            if (nbreClavier >= 1) { l.info("il y a " + nbreClavier + " clavier");
+            clavier.setEtat(true);}
             else { l.info("Aucun clavier n'a été détecté"); }
-            if (nbreSouris >= 1) { l.info("il y a " + resultatSouris + " souris"); }
+            if (nbreSouris >= 1) { l.info("il y a " + resultatSouris + " souris");
+            souris.setEtat(true);}
             else { l.info("Aucun souris n'a été détecté"); }
-            if (nbreEcran >= 1) { l.info("il y a " + resultatEcran + " ecran"); }
+            if (nbreEcran >= 1) { l.info("il y a " + resultatEcran + " ecran");
+            ecran.setEtat(true);}
             else { l.info("Aucun ecran n'a été détecté"); }
             powerShell.close();
         }
+        materielDao.save(souris);
+        materielDao.save(ecran);
+        materielDao.save(clavier);
     }
 
     public void testOneSalle(Long id,String user, String password) {

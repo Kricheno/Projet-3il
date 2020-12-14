@@ -15,12 +15,16 @@ public class Materiel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id_Materiel;
-    private String reference;
     private String nom;
     private Boolean etat;
-    @Enumerated
-    private TypeMateriel type;
     private Long id_poste;
+
+    public Materiel(String nom, Boolean etat, Long id_poste) {
+        this.nom = nom;
+        this.etat = etat;
+        this.id_poste = id_poste;
+    }
+
     @ManyToOne
     @JoinColumn(name="id_poste", insertable = false,updatable = false)
     private Poste poste;
@@ -35,14 +39,6 @@ public class Materiel implements Serializable {
 
     public void setId_Materiel(long id_Materiel) {
         Id_Materiel = id_Materiel;
-    }
-
-    public String getReference() {
-        return reference;
-    }
-
-    public void setReference(String reference) {
-        this.reference = reference;
     }
 
     public String getNom() {
@@ -61,13 +57,6 @@ public class Materiel implements Serializable {
         this.etat = etat;
     }
 
-    public TypeMateriel getType() {
-        return type;
-    }
-
-    public void setType(TypeMateriel type) {
-        this.type = type;
-    }
 
     public Long getId_poste() {
         return id_poste;
