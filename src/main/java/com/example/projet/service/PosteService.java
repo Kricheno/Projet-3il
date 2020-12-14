@@ -36,8 +36,10 @@ public class PosteService implements  IPosteService{
         }
         return Postes;
     }
-
-
+    @Override
+    public void deleteAll(){
+        posteDao.deleteAll();
+    }
 
     @Override
     public List<Poste> retrievePostesBySalle(Long id) {

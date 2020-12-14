@@ -42,10 +42,62 @@ public class Poste implements Serializable {
         Adresse_IP = adresse_IP;
         this.id_Salle = id_Salle;
     }
-//    public Poste(Salle salle,String adresse_Mac, String adresse_IP) {
-//        Adresse_Mac = adresse_Mac;
-//        Adresse_IP = adresse_IP;
-//        this.salle = salle;
-//    }
+
+    public long getId_Salle() {
+        return id_Salle;
+    }
+
+    public void setId_Salle(long id_Salle) {
+        this.id_Salle = id_Salle;
+    }
+
+    public long getId_Poste() {
+        return Id_Poste;
+    }
+
+    public void setId_Poste(long id_Poste) {
+        Id_Poste = id_Poste;
+    }
+
+    public String getAdresse_Mac() {
+        return Adresse_Mac;
+    }
+
+    public void setAdresse_Mac(String adresse_Mac) {
+        Adresse_Mac = adresse_Mac;
+    }
+
+    public String getAdresse_IP() {
+        return Adresse_IP;
+    }
+
+    public void setAdresse_IP(String adresse_IP) {
+        Adresse_IP = adresse_IP;
+    }
+
+    public boolean isEtat() {
+        return etat;
+    }
+
+    public void setEtat(boolean etat) {
+        this.etat = etat;
+    }
+
+    public Salle getSalle() {
+        return salle;
+    }
+
+    public void setSalle(Salle salle) {
+        this.salle = salle;
+    }
+
+    public List<Materiel> getMateriels() {
+        return materiels;
+    }
+
+    public void setMateriels(List<Materiel> materiels) {
+        this.materiels = materiels;
+    }
+
 
 }

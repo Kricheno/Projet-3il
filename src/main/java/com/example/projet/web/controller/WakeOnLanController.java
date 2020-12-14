@@ -4,6 +4,7 @@ import com.example.projet.api.wmi.PowerShell;
 import com.example.projet.dao.SalleDao;
 import com.example.projet.entity.Salle;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.example.projet.dao.PosteDao;
@@ -24,6 +25,8 @@ public class WakeOnLanController {
     PosteDao pdao;
     @Autowired
     SalleDao salleDao;
+    private static final org.apache.logging.log4j.Logger log=  LogManager.getLogger(WakeOnLanController.class);
+
     @PostMapping("/wakeOnLanSalle")
     @ResponseBody
     public void wakeOnLanSalleShell(@RequestParam("Id_Salle") Long id){

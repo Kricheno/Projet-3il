@@ -27,6 +27,34 @@ public class Salle implements Serializable {
         Nombre_Postes = nombre_Postes;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public long getId_Salle() {
+        return Id_Salle;
+    }
+
+    public void setId_Salle(long id_Salle) {
+        Id_Salle = id_Salle;
+    }
+
+    public String getNumero_Salle() {
+        return Numero_Salle;
+    }
+
+    public void setNumero_Salle(String numero_Salle) {
+        Numero_Salle = numero_Salle;
+    }
+
+    public int getNombre_Postes() {
+        return Nombre_Postes;
+    }
+
+    public void setNombre_Postes(int nombre_Postes) {
+        Nombre_Postes = nombre_Postes;
+    }
+
     public Salle() {
 
     }

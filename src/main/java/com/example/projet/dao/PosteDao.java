@@ -14,4 +14,5 @@ public interface PosteDao extends JpaRepository<Poste,Long> {
     List<Object> retrievePostesBySalleObject(@Param("id") Long long1);
     @Query("select p FROM Poste p where (p.salle.Id_Salle = :id)")
     List<Poste> retrievePostesBySalle(@Param("id") Long long1);
+
 }

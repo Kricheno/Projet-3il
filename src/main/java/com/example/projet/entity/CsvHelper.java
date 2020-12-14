@@ -1,6 +1,7 @@
 package com.example.projet.entity;
 
 import com.example.projet.dao.SalleDao;
+import com.example.projet.service.PosteService;
 import org.apache.commons.csv.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,7 +18,8 @@ public class CsvHelper {
 
     @Autowired
     public static SalleDao salleDao;
-
+    @Autowired
+    public static PosteService posteService;
     public static boolean hasCSVFormat(MultipartFile file) {
         if (TYPE.equals(file.getContentType())
                 || file.getContentType().equals("application/vnd.ms-excel")) {
@@ -35,13 +37,14 @@ public class CsvHelper {
             List<Poste> posteList = new ArrayList<>();
 
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
-
+            posteService.deleteAll();
             for (CSVRecord csvRecord : csvRecords) {
                 //Optional<Salle> salle = salleDao.findById();
                 Poste poste = new Poste(
 
                         csvRecord.get("adresse_mac"),
-                        csvRecord.get("adresse_ip"),Long.parseLong(csvRecord.get("id_salle"))
+                        csvRecord.get("adresse_ip"),
+                        Long.parseLong(csvRecord.get("id_salle"))
 
                 );
 

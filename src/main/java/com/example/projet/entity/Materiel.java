@@ -20,7 +20,7 @@ public class Materiel implements Serializable {
     private Boolean etat;
     @Enumerated
     private TypeMateriel type;
-
+    private Long id_poste;
     @ManyToOne
     @JoinColumn(name="id_poste", insertable = false,updatable = false)
     private Poste poste;
@@ -69,6 +69,17 @@ public class Materiel implements Serializable {
         this.type = type;
     }
 
+    public Long getId_poste() {
+        return id_poste;
+    }
+
+    public void setId_poste(Long id_poste) {
+        this.id_poste = id_poste;
+    }
+
+    public Poste getPoste() {
+        return poste;
+    }
 
     public void setPoste(Poste poste) {
         this.poste = poste;
