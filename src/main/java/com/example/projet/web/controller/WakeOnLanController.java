@@ -1,4 +1,5 @@
 package com.example.projet.web.controller;
+import com.example.projet.api.ping.Ping;
 import com.example.projet.api.wmi.OSDetector;
 import com.example.projet.api.wmi.PowerShell;
 import com.example.projet.dao.SalleDao;
@@ -13,6 +14,7 @@ import com.example.projet.service.WakeOnLanService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Timer;
 
 @Slf4j
 @CrossOrigin(origins = "http://localhost:4200")
@@ -39,7 +41,15 @@ public class WakeOnLanController {
               //  powerShell.executeCommand("C:\\Windows\\System32\\wol.exe " + p.getAdresse_Mac() + " /d 172.16.255.255");
             log.info("la commande wake on lan a été exuté avec l'id: {}",p.getId_Poste());
                 });
-           // powerShell.close();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Ping ping= new Ping();
+        ping.sendPingRequestSalle(salle.get());
+
+        // powerShell.close();
        // }
        //listBySalle.parallelStream().forEach((Poste p)-> wols.wakeOnLan(p.getAdresse_IP(),p.getAdresse_Mac()));
     }
