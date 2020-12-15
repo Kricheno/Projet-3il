@@ -35,11 +35,14 @@ public class CsvHelper {
                      CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());) {
 
             List<Poste> posteList = new ArrayList<>();
-
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
 
             for (CSVRecord csvRecord : csvRecords) {
-                //Optional<Salle> salle = salleDao.findById();
+                Optional<Optional<Salle>> salle = Optional.ofNullable(salleDao.findById(Long.parseLong(csvRecord.get("id_salle"))));
+                if(!salle.isPresent()){
+                    Salle salle1=new Salle(Long.parseLong(csvRecord.get("id_salle")));
+                    salleDao.save(salle1);
+                }
                 Poste poste = new Poste(
 
                         csvRecord.get("adresse_mac"),
@@ -47,6 +50,7 @@ public class CsvHelper {
                         Long.parseLong(csvRecord.get("id_salle"))
 
                 );
+
 
                 posteList.add(poste);
             }
