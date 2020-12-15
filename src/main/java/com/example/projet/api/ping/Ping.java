@@ -17,8 +17,10 @@ import java.util.List;
 public class Ping {
     private static final Logger l=  LogManager.getLogger(Ping.class);
 
+
+
     @Autowired
-    PosteDao pdao;
+    private PosteDao posteDao;
     // Sends ping request to a provided IP address
     public void sendPingRequest(Poste poste)
             throws IOException {
@@ -31,10 +33,10 @@ public class Ping {
            l.info("Sorry ! We can't reach to this host");
             poste.setEtat(false);
              }
-        pdao.save(poste);
+        posteDao.save(poste);
     }
     public void sendPingRequestSalle(Salle salle){
-        List<Poste> listBySalle = pdao.retrievePostesBySalle(salle.getId_Salle());
+        List<Poste> listBySalle = posteDao.retrievePostesBySalle(salle.getId_Salle());
         listBySalle.parallelStream().forEach((Poste p)-> {
             try {
                 sendPingRequest(p);
@@ -43,6 +45,7 @@ public class Ping {
             }
         });
     }
+
 
     // Driver code
 //    public static void main(String[] args)

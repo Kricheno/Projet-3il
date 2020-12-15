@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Timer;
 
-@Slf4j
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/wol")
 @RestController
@@ -35,17 +35,23 @@ public class WakeOnLanController {
         Optional<Salle> salle=salleDao.findById(id);
         List<Poste> listBySalle = pdao.retrievePostesBySalle(salle.get().getId_Salle());
 
-         listBySalle.parallelStream().forEach((Poste p)-> {
+         if (OSDetector.isWindows()) {
+                PowerShell powerShell = PowerShell.openSession();
+                listBySalle.parallelStream().forEach((Poste p)-> {
+                powerShell.executeCommand("C:\\Windows\\System32\\wol.exe " + p.getAdresse_Mac() + " /d 172.16.255.255");
             log.info("la commande wake on lan a été exuté avec l'id: {}",p.getId_Poste());
                 });
-         // tester le ping aprés wake on lan
 //        try {
 //            Thread.sleep(5000);
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-//        Ping ping= new Ping();
-//        ping.sendPingRequestSalle(salle.get());
+       // Ping ping= new Ping();
+       // ping.sendPingRequestSalle(salle.get());
+
+         powerShell.close();
+        }
+       //listBySalle.parallelStream().forEach((Poste p)-> wols.wakeOnLan(p.getAdresse_IP(),p.getAdresse_Mac()));
     }
     @PostMapping("/wakeOnLanPoste/{Id_Poste}")
     @ResponseBody

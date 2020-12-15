@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface PosteDao extends JpaRepository<Poste,Long> {
 
+
     @Query("select p.Id_Poste, p.Adresse_IP, p.Adresse_Mac,p.salle.Id_Salle FROM Poste p where (p.salle.Id_Salle = :id)")
     List<Object> retrievePostesBySalleObject(@Param("id") Long long1);
 

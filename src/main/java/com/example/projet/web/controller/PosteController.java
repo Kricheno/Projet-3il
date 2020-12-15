@@ -16,12 +16,15 @@ import java.util.Optional;
 @RestController
 @RequestMapping(value="/poste")
 public class PosteController {
+
     @Autowired
-    PosteDao pdao;
+    private Ping ping;
     @Autowired
-    PosteService ps;
+    private  PosteDao posteDao;
     @Autowired
-    SalleDao salleDao;
+    private PosteService ps;
+    @Autowired
+    private SalleDao salleDao;
     //http://localhost:8081/SpringMVC/servlet
     @RequestMapping(value="/retrieve-all-postes", method= RequestMethod.GET)
     @ResponseBody
@@ -32,11 +35,11 @@ public class PosteController {
     @RequestMapping(value="/retrieve-postes-by-salle/{Id_salle}", method= RequestMethod.GET)
     @ResponseBody
     public List<Poste> retrievePostesBySalle(@PathVariable("Id_salle") Long id) {
-//        Optional<Salle> salle=salleDao.findById(id);
-//        List<Poste> listBySalle = pdao.retrievePostesBySalle(salle.get().getId_Salle());
-//        Ping ping= new Ping();
-//        ping.sendPingRequestSalle(salle.get());
-        return ps.retrievePostesBySalle(id);
+      Optional<Salle> salle=salleDao.findById(id);
+     List<Poste> listBySalle = posteDao.retrievePostesBySalle(salle.get().getId_Salle());
+       // Ping ping= new Ping();
+        ping.sendPingRequestSalle(salle.get());
+        return listBySalle;
     }
 
     @PostMapping("/addPoste")
