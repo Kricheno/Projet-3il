@@ -19,12 +19,6 @@ public class Materiel implements Serializable {
     private Boolean etat;
     private Long id_poste;
 
-//    @Transient
-//    @ManyToOne
-//    @JoinColumn(name="id_poste", insertable = false,updatable = false)
-//    private Poste poste;
-
-
     public Materiel(String nom, Boolean etat, Long id_poste) {
         this.nom = nom;
         this.etat = etat;

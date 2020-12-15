@@ -24,10 +24,6 @@ public class PosteService implements  IPosteService{
         return 1;
     }
 
-    @Transactional
-    public void deleteAll() {
-        posteDao.deleteAll();
-    }
 
     @Override
     public void deletePoste(Long id) {
@@ -43,6 +39,10 @@ public class PosteService implements  IPosteService{
         }
         return Postes;
     }
+//    @Override
+//    public void deleteAll(){
+//        posteDao.deleteAll();
+//    }
 
     @Override
     public List<Poste> retrievePostesBySalle(Long id) {

@@ -25,7 +25,11 @@ public class WmiController {
     public void testOnePoste(@RequestParam("Id_Poste") Long id){
         wmiService.testOnePoste(id,user,password);
     }
-
+    @PostMapping("/testSalleParallel")
+    @ResponseBody
+    public void testOneSalleParallel(@RequestParam("Id_Salle") Long id){
+        wmiService.testOneSalleParallel(id,user,password);
+    }
 
     @PostMapping("/testSalle")
     @ResponseBody

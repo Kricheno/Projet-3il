@@ -24,7 +24,6 @@ public class Poste implements Serializable {
     private boolean etat;
     private long id_Salle;
 
-
     @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinColumn(name = "id_salle", insertable = false,updatable = false)
     private Salle salle;
@@ -94,13 +93,13 @@ public class Poste implements Serializable {
         this.salle = salle;
     }
 
-//    public List<Materiel> getMateriels() {
-//        return materiels;
-//    }
-//
-//    public void setMateriels(List<Materiel> materiels) {
-//        this.materiels = materiels;
-//    }
+    public List<Materiel> getMateriels() {
+        return materiels;
+    }
+
+    public void setMateriels(List<Materiel> materiels) {
+        this.materiels = materiels;
+    }
 
 
 }
