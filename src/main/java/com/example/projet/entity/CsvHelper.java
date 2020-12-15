@@ -37,7 +37,7 @@ public class CsvHelper {
             List<Poste> posteList = new ArrayList<>();
 
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
-            posteService.deleteAll();
+
             for (CSVRecord csvRecord : csvRecords) {
                 //Optional<Salle> salle = salleDao.findById();
                 Poste poste = new Poste(

@@ -24,12 +24,15 @@ public class Poste implements Serializable {
     private boolean etat;
     private long id_Salle;
 
+
     @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     @JoinColumn(name = "id_salle", insertable = false,updatable = false)
     private Salle salle;
 
-    @OneToMany(mappedBy = "poste")
+    @OneToMany
+    @JoinColumn(name = "id_poste")
     private List<Materiel> materiels;
+
 
     public Poste(long id_Poste, String adresse_Mac, String adresse_IP) {
         Id_Poste = id_Poste;
@@ -91,13 +94,13 @@ public class Poste implements Serializable {
         this.salle = salle;
     }
 
-    public List<Materiel> getMateriels() {
-        return materiels;
-    }
-
-    public void setMateriels(List<Materiel> materiels) {
-        this.materiels = materiels;
-    }
+//    public List<Materiel> getMateriels() {
+//        return materiels;
+//    }
+//
+//    public void setMateriels(List<Materiel> materiels) {
+//        this.materiels = materiels;
+//    }
 
 
 }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @SpringBootApplication
 @EntityScan( basePackages = {"com/example/projet/entity","com.example.projet.service","com.example.projet.controller"} )
-//@EnableJpaRepositories("com.example.projet.dao")
+@EnableJpaRepositories("com.example.projet.dao")
 public class ProjetApplication {
 
     public static void main(String[] args) {

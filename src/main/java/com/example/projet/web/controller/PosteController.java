@@ -32,10 +32,10 @@ public class PosteController {
     @RequestMapping(value="/retrieve-postes-by-salle/{Id_salle}", method= RequestMethod.GET)
     @ResponseBody
     public List<Poste> retrievePostesBySalle(@PathVariable("Id_salle") Long id) {
-        Optional<Salle> salle=salleDao.findById(id);
-        List<Poste> listBySalle = pdao.retrievePostesBySalle(salle.get().getId_Salle());
-        Ping ping= new Ping();
-        ping.sendPingRequestSalle(salle.get());
+//        Optional<Salle> salle=salleDao.findById(id);
+//        List<Poste> listBySalle = pdao.retrievePostesBySalle(salle.get().getId_Salle());
+//        Ping ping= new Ping();
+//        ping.sendPingRequestSalle(salle.get());
         return ps.retrievePostesBySalle(id);
     }
 

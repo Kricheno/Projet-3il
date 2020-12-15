@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value="/wmi")
 public class WmiController {
     private static final org.apache.logging.log4j.Logger l=  LogManager.getLogger(WmiController.class);
-    String user = "Projet_3il";
-    String password="omartest";
+    String user = "";
+    String password="";
     @Autowired
     WmiService wmiService;
 

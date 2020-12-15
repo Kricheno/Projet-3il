@@ -1,4 +1,5 @@
 package com.example.projet.web.controller;
+import com.example.projet.dao.PosteDao;
 import com.example.projet.service.PosteService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import com.example.projet.entity.CsvHelper;
@@ -25,13 +26,15 @@ import java.util.List;
 public class CsvController {
     @Autowired
     CsvService fileService;
-
+@Autowired
+    PosteDao poste;
     @PostMapping("/upload")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
         String message = "";
 
         if (CsvHelper.hasCSVFormat(file)) {
             try {
+
                 fileService.save(file);
 
                 message = "Uploaded the file successfully: " + file.getOriginalFilename();

@@ -14,7 +14,6 @@ public interface IPosteService {
 
     Poste updatePoste(Poste p);
 
-    void deleteAll();
 
     List<Poste> retrievePostesBySalle(Long id);
 }

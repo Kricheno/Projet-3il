@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,13 +14,19 @@ import java.util.List;
 public class PosteService implements  IPosteService{
 
     @Autowired
-    PosteDao posteDao;
+    public PosteDao posteDao;
+
     private static final Logger l=  LogManager.getLogger(SalleService.class);
 
     @Override
     public int addPoste(Poste p) {
         posteDao.save(p);
         return 1;
+    }
+
+    @Transactional
+    public void deleteAll() {
+        posteDao.deleteAll();
     }
 
     @Override
@@ -35,10 +42,6 @@ public class PosteService implements  IPosteService{
 
         }
         return Postes;
-    }
-    @Override
-    public void deleteAll(){
-        posteDao.deleteAll();
     }
 
     @Override
