@@ -22,6 +22,12 @@ public class Salle implements Serializable {
         Id_Salle = id_Salle;
     }
 
+    public Salle(long id_Salle, String numero_Salle, int nombre_Postes) {
+        Id_Salle = id_Salle;
+        Numero_Salle = numero_Salle;
+        Nombre_Postes = nombre_Postes;
+    }
+
     public Salle(String numero_Salle, int nombre_Postes) {
         Numero_Salle = numero_Salle;
         Nombre_Postes = nombre_Postes;
