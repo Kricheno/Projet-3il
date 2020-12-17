@@ -8,12 +8,9 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "salle")
-@AllArgsConstructor
-
 public class Salle implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id_Salle;
     private String Numero_Salle;
     private int Nombre_Postes;

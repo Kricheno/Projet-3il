@@ -1,5 +1,4 @@
 package com.example.projet.web.controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import com.example.projet.entity.ResponseMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

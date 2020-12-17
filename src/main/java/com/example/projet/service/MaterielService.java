@@ -2,9 +2,7 @@ package com.example.projet.service;
 
 
 import com.example.projet.dao.MaterielDao;
-import com.example.projet.dao.PosteDao;
 import com.example.projet.entity.Materiel;
-import com.example.projet.entity.Poste;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

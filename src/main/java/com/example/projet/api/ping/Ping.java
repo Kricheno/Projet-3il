@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.List;
 
 @Service
@@ -47,17 +46,5 @@ public class Ping {
     }
 
 
-    // Driver code
-//    public static void main(String[] args)
-//            throws UnknownHostException, IOException
-//    {
-//        String ipAddress = "127.0.0.1";
-//        sendPingRequest(ipAddress);
-//
-//        ipAddress = "133.192.31.42";
-//        sendPingRequest(ipAddress);
-//
-//        ipAddress = "145.154.42.58";
-//        sendPingRequest(ipAddress);
-//    }
+
 }

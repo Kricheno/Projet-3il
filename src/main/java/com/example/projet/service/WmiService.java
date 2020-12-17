@@ -34,25 +34,16 @@ public class WmiService {
         Optional<Materiel> clavier= Optional.ofNullable(materielDao.retrieveMaterielsByPosteAndName(id, "clavier"));
         Optional<Materiel> ecran= Optional.ofNullable(materielDao.retrieveMaterielsByPosteAndName(id, "ecran"));
 
-//        Materiel souris=new Materiel("souris",false,id);
-//        Materiel ecran=new Materiel("ecran",false,id);
+
         if (OSDetector.isWindows()) {
             PowerShell powerShell = PowerShell.openSession();
-            // Pour detecter le clavier
-            //PowerShellResponse responseClavier = powerShell.executeCommand("wmic /node:\"" + poste.get().getAdresse_IP() + "\" /user:\"" + user + "\" /password:  \"" + password + "\" path Win32_Keyboard get Description /value | find /i /c --% \"Description\"");
+             //Pour detecter le clavier
+            PowerShellResponse responseClavier = powerShell.executeCommand("wmic /node:\""+poste.get().getAdresse_IP()+"\" /user:\"" + user + "\" /password:  \"" + password + "\" path Win32_Keyboard get Description /value | find /i /c --% \"Description\"");
             //Pour detecter la souris
-            //PowerShellResponse responseSouris = powerShell.executeCommand("wmic /node:\"" + poste.get().getAdresse_IP()  + "\" /user:\"" + user + "\" /password:  \"" + password + "\" path Win32_PointingDevice get Name /value | find /i /c --% \"Name\"");
+            PowerShellResponse responseSouris = powerShell.executeCommand("wmic /node:\""+poste.get().getAdresse_IP()+"\" /user:\"" + user + "\" /password:  \"" + password + "\" path Win32_PointingDevice get Name /value | find /i /c --% \"Name\"");
             //Pour detecter la ecran
-            //PowerShellResponse responseEcran = powerShell.executeCommand("wmic /node:\"" + poste.get().getAdresse_IP()  + "\" /user:\"" + user + "\"  /password:  \"" + password + "\" get-ciminstance -namespace root/wmi -classname WmiMonitorConnectionParams | find /i /c --% \"DISPLAY\"");
+            PowerShellResponse responseEcran = powerShell.executeCommand("wmic /node:\""+poste.get().getAdresse_IP()+"\" /user:\"" + user + "\"  /password:  \"" + password + "\" get-ciminstance -namespace root/wmi -classname WmiMonitorConnectionParams | find /i /c --% \"DISPLAY\"");
 
-
-
-            // Pour detecter le clavier
-            PowerShellResponse responseClavier = powerShell.executeCommand("wmic path Win32_Keyboard get Description /value | find /i /c --% \"Description\"");
-            //Pour detecter la souris
-            PowerShellResponse responseSouris = powerShell.executeCommand("wmic path Win32_PointingDevice get Name /value | find /i /c --% \"Name\"");
-            //Pour detecter la ecran
-            PowerShellResponse responseEcran = powerShell.executeCommand(" get-ciminstance -namespace root/wmi -classname WmiMonitorConnectionParams | find /i /c --% \"DISPLAY\"");
 
             String resultatClavier = responseClavier.getCommandOutput();
             String resultatSouris = responseSouris.getCommandOutput();
@@ -118,131 +109,18 @@ public class WmiService {
 
             powerShell.close();
         }
-     //   materielService.(souris.get());
-       // materielDao.save(ecran);
-        //materielDao.save(clavier);
-    }
-    public void testEcran(Long id,String user, String password) {
-        l.info("testing souris");
-        if (OSDetector.isWindows()) {
-            PowerShell powerShell = PowerShell.openSession();
-            Optional<Materiel> ecran = Optional.ofNullable(materielDao.retrieveMaterielsByPosteAndName(id, "ecran"));
-            //Pour detecter la ecran
-            //PowerShellResponse responseEcran = powerShell.executeCommand("wmic /node:\"" + poste.get().getAdresse_IP()  + "\" /user:\"" + user + "\"  /password:  \"" + password + "\" get-ciminstance -namespace root/wmi -classname WmiMonitorConnectionParams | find /i /c --% \"DISPLAY\"");
-            //Pour detecter la ecran
-            PowerShellResponse responseEcran = powerShell.executeCommand(" get-ciminstance -namespace root/wmi -classname WmiMonitorConnectionParams | find /i /c --% \"DISPLAY\"");
-            String resultatEcran = responseEcran.getCommandOutput();
-            Integer nbreEcran = Integer.parseInt(resultatEcran);
-            //ecran
-            if(ecran.isPresent()){
-                if  (nbreEcran >= 1) { l.info("il y a " + resultatEcran + " ecran");
-                    ecran.get().setEtat(true);
-                    materielDao.save(ecran.get());
-                }
-                else { l.info("Aucun ecran n'a été détecté");
-                    ecran.get().setEtat(false);
-                    materielDao.save(ecran.get());}
-            }
-            else{
-                if  (nbreEcran >= 1) { l.info("il y a " + resultatEcran + " ecran");
-                    Materiel ecran1=new Materiel("ecran",true,id);
-                    materielDao.save(ecran1);}
-                else { l.info("Aucun ecran n'a été détecté");
-                    Materiel ecran1=new Materiel("ecran",false,id);
-                    materielDao.save(ecran1);}
-            }
-
-        }
-    }
-    public void testSouris(Long id,String user, String password){
-        l.info("testing souris");
-        Optional<Materiel> souris= Optional.ofNullable(materielDao.retrieveMaterielsByPosteAndName(id, "souris"));
-        if (OSDetector.isWindows()) {
-            PowerShell powerShell = PowerShell.openSession();
-            //Pour detecter la souris avec
-            //PowerShellResponse responseSouris = powerShell.executeCommand("wmic /node:\"" + poste.get().getAdresse_IP()  + "\" /user:\"" + user + "\" /password:  \"" + password + "\" path Win32_PointingDevice get Name /value | find /i /c --% \"Name\"");
-            //Pour detecter la souris
-            PowerShellResponse responseSouris = powerShell.executeCommand("wmic path Win32_PointingDevice get Name /value | find /i /c --% \"Name\"");
-            String resultatSouris = responseSouris.getCommandOutput();
-            Integer nbreSouris = Integer.parseInt(resultatSouris);
-            if (souris.isPresent()){
-                if (nbreSouris >= 1) { l.info("il y a " + resultatSouris + " souris");
-                    souris.get().setEtat(true);
-                    materielDao.save(souris.get());}
-                else { l.info("Aucun souris n'a été détecté");
-                    souris.get().setEtat(false);
-                    materielDao.save(souris.get());}
-            }
-
-            else{
-                if (nbreSouris >= 1) { l.info("il y a " + resultatSouris + " souris");
-                    Materiel souris1=new Materiel("souris",true,id);
-                    materielDao.save(souris1);}
-                else { l.info("Aucun souris n'a été détecté");
-                    Materiel souris1=new Materiel("souris",false,id);
-                    materielDao.save(souris1);}
-            }
-            powerShell.close();
-        }
-
     }
 
-    public void testClavier(Long id,String user, String password){
-        l.info("testing souris");
-        Optional<Materiel> clavier= Optional.ofNullable(materielDao.retrieveMaterielsByPosteAndName(id, "clavier"));
-        if (OSDetector.isWindows()) {
-            PowerShell powerShell = PowerShell.openSession();
-            // Pour detecter le clavier sans user et password
-            PowerShellResponse responseClavier = powerShell.executeCommand("wmic path Win32_Keyboard get Description /value | find /i /c --% \"Description\"");
-            // Pour detecter le clavier
-            //PowerShellResponse responseClavier = powerShell.executeCommand("wmic /node:\"" + poste.get().getAdresse_IP() + "\" /user:\"" + user + "\" /password:  \"" + password + "\" path Win32_Keyboard get Description /value | find /i /c --% \"Description\"");
-            String resultatClavier = responseClavier.getCommandOutput();
-            Integer nbreClavier = Integer.parseInt(resultatClavier);
 
-            //clavier
-            if(clavier.isPresent()){
-                if (nbreClavier >= 1) { l.info("il y a " + resultatClavier + " clavier");
-                    clavier.get().setEtat(true);
-                    materielDao.save(clavier.get());
-                }
-                else { l.info("Aucun clavier n'a été détecté");
-                    clavier.get().setEtat(false);
-                    materielDao.save(clavier.get());}
-            }
-            else{
-                if (nbreClavier >= 1) { l.info("il y a " + resultatClavier + " claviers");
-                    Materiel clavier1=new Materiel("clavier",true,id);
-                    materielDao.save(clavier1);}
-                else { l.info("Aucun clavier n'a été détecté");
-                    Materiel clavier1=new Materiel("clavier",false,id);
-                    materielDao.save(clavier1);}
-            }
-            powerShell.close();
-        }
-    }
-//    public void testOnePosteParallel(Long id,String user, String password){
-//        l.info("testing one poste");
-//
-//
-//    }
     public void testOneSalle(Long id,String user, String password) {
         l.info("testing one salle");
         List<Poste> listBySalle = pdao.retrievePostesBySalle(id);
         listBySalle.parallelStream().forEach((Poste p)->
-                //testOnePoste(p.getId_Poste(),user,password)
-                l.info("wmi pour l'id: {}",p.getId_Poste())
+                testOnePoste(p.getId_Poste(),user,password)
+
         );
     }
-    public void testOneSalleParallel(Long id,String user, String password) {
-        l.info("testing one salle");
-        List<Poste> listBySalle = pdao.retrievePostesBySalle(id);
-        listBySalle.parallelStream().forEach((Poste p)-> {
-                    testSouris(p.getId_Poste(),user,password);
-                    testClavier(p.getId_Poste(),user,password);
-                    testEcran(p.getId_Poste(),user,password);
-                    l.info("wmi pour l'id: {}",p.getId_Poste());}
-        );
-    }
+
 
 }
 

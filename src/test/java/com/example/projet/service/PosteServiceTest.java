@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
+@SpringBootTest(classes = {ProjetApplication.class})
 @DataJpaTest
 public class PosteServiceTest {
 
@@ -47,4 +48,8 @@ public class PosteServiceTest {
 //        posteService.addPoste(poste);
 //    }
 
+    @Test
+    public void deletePostes(){
+        pdao.deleteAll();
+    }
 }

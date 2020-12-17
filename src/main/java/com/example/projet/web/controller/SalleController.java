@@ -43,37 +43,6 @@ public class SalleController {
     public void updateSalle(@RequestBody Salle s) {
         ss.updateSalle(s);
     }
-    // Pour faire un filre de colonne à afficher
-    /*public MappingJacksonValue listeSalles(){
 
-        SimpleBeanPropertyFilter monFiltre = SimpleBeanPropertyFilter.serializeAllExcept("prixAchat");
-
-        FilterProvider listDeNosFiltres = new SimpleFilterProvider().addFilter("monFiltreDynamique", monFiltre);
-
-        MappingJacksonValue produitsFiltres = new MappingJacksonValue(salles);
-
-        produitsFiltres.setFilters(listDeNosFiltres);
-
-        return produitsFiltres;
-    }*/
-
-
-    // récupérer une salle pas son id
-   /* @GetMapping (value="/Salles/{id}")
-    public Salle afficherUneSalle(@PathVariable int id ){return salleDao.findById(id);}
-
-    @PostMapping(value ="/Salles")
-    public ResponseEntity<Void> ajouterSalle(@RequestBody Salle salle){
-        Salle salleAdded = salleDao.save(salle);
-        if(salleAdded == null)
-            return ResponseEntity.noContent().build();
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(salleAdded.getId_Salle())
-                .toUri();
-        return ResponseEntity.created(location).build();
-
-    }*/
 
 }

@@ -1,7 +1,6 @@
 package com.example.projet.web.controller;
 
 import com.example.projet.entity.Materiel;
-import com.example.projet.entity.Poste;
 import com.example.projet.service.MaterielService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

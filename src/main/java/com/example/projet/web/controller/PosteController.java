@@ -25,7 +25,7 @@ public class PosteController {
     private PosteService ps;
     @Autowired
     private SalleDao salleDao;
-    //http://localhost:8081/SpringMVC/servlet
+    //http://localhost:8080/
     @RequestMapping(value="/retrieve-all-postes", method= RequestMethod.GET)
     @ResponseBody
     public List<Poste> retrievePostes() {
@@ -37,7 +37,6 @@ public class PosteController {
     public List<Poste> retrievePostesBySalle(@PathVariable("Id_salle") Long id) {
       Optional<Salle> salle=salleDao.findById(id);
      List<Poste> listBySalle = posteDao.retrievePostesBySalle(salle.get().getId_Salle());
-       // Ping ping= new Ping();
         ping.sendPingRequestSalle(salle.get());
         return listBySalle;
     }

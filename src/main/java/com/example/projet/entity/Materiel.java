@@ -1,7 +1,6 @@
 package com.example.projet.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
@@ -64,11 +63,4 @@ public class Materiel implements Serializable {
         this.id_poste = id_poste;
     }
 
-//    public Poste getPoste() {
-//        return poste;
-//    }
-//
-//    public void setPoste(Poste poste) {
-//        this.poste = poste;
-//    }
 }
